@@ -6,9 +6,12 @@ option(TK_BUILD_SHARED "TK_BUILD_SHARED" ON)
 file(GLOB SOURCES src/*.cpp)
 file(GLOB HEADERS include/*.hpp)
 
+add_definitions(-DTK_BUILD)
+
 set(BUID_MODE STATIC)
 if (TK_BUILD_SHARED)
     set(BUILD_MODE SHARED)
+    add_definitions(-DTK_SHARED)
 endif()
 
 add_library(tk-core ${BUILD_MODE} ${SOURCES} ${HEADERS})
