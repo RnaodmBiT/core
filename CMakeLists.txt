@@ -3,8 +3,8 @@ project(tk-core)
 
 option(TK_BUILD_SHARED "TK_BUILD_SHARED" ON)
 
-file(GLOB SOURCES src/*.cpp)
-file(GLOB HEADERS include/*.hpp)
+file(GLOB_RECURSE SOURCES src/*.cpp)
+file(GLOB_RECURSE HEADERS include/*.hpp)
 
 add_definitions(-DTK_BUILD)
 
