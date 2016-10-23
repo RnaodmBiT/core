@@ -15,8 +15,9 @@ namespace tk {
             }
 
             Vector(std::initializer_list<T> elements) {
-                for (int i = 0; i < N; ++i) {
-                    data[i] = v.data[i];
+                int i = 0;
+                for (const T& e : elements) {
+                    data[i++] = e;
                 }
             }
 
