@@ -6,7 +6,7 @@ option(TK_BUILD_SHARED "TK_BUILD_SHARED" ON)
 file(GLOB_RECURSE SOURCES src/*.cpp)
 file(GLOB_RECURSE HEADERS include/*.hpp)
 
-add_definitions(-DTK_BUILD)
+add_definitions(-DTK_BUILD_CORE)
 
 set(BUID_MODE STATIC)
 if (TK_BUILD_SHARED)

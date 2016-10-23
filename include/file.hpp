@@ -6,7 +6,7 @@
 namespace tk {
     namespace core {
 
-        TK_API std::string readFile(const std::string& filename);
+        TK_CORE std::string readFile(const std::string& filename);
 
     }
 }
