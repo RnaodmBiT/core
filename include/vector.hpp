@@ -1,5 +1,6 @@
 #pragma once
 #include <detail/vector_base.hpp>
+#include <cmath>
 
 namespace tk {
     namespace core {
@@ -10,20 +11,20 @@ namespace tk {
 
             Vector(T x = 0) {
                 for (int i = 0; i < N; ++i) {
-                    data[i] = x;
+                    this->data[i] = x;
                 }
             }
 
             Vector(std::initializer_list<T> elements) {
                 int i = 0;
                 for (const T& e : elements) {
-                    data[i++] = e;
+                    this->data[i++] = e;
                 }
             }
 
             Vector(const Vector& v) {
                 for (int i = 0; i < N; ++i) {
-                    data[i] = v.data[i];
+                    this->data[i] = v.data[i];
                 }
             }
 
@@ -31,7 +32,7 @@ namespace tk {
             T dot(const Vector& v) const {
                 T sum = 0;
                 for (int i = 0; i < N; ++i) {
-                    sum += data[i] * v.data[i];
+                    sum += this->data[i] * v.data[i];
                 }
                 return sum;
             }
@@ -39,9 +40,9 @@ namespace tk {
 
             typename std::enable_if<N == 3, Vector>::type cross(const Vector& v) const {
                 return Vector{
-                    y * v.z - z * v.y,
-                    z * v.x - x * v.z,
-                    x * v.y - y * v.x
+                    this->y * v.z - this->z * v.y,
+                    this->z * v.x - this->x * v.z,
+                    this->x * v.y - this->y * v.x
                 };
             }
 
@@ -49,7 +50,7 @@ namespace tk {
             T lengthSquared() const {
                 T sum = 0;
                 for (int i = 0; i < N; ++i) {
-                    sum += data[i] * data[i];
+                    sum += this->data[i] * this->data[i];
                 }
             }
 
@@ -61,63 +62,63 @@ namespace tk {
 
             Vector& operator=(const Vector& v) {
                 for (int i = 0; i < N; ++i) {
-                    data[i] = v.data[i];
+                    this->data[i] = v.data[i];
                 }
                 return *this;
             }
 
             Vector& operator+=(const Vector& v) {
                 for (int i = 0; i < N; ++i) {
-                    data[i] += v.data[i];
+                    this->data[i] += v.data[i];
                 }
                 return *this;
             }
 
             Vector& operator-=(const Vector& v) {
                 for (int i = 0; i < N; ++i) {
-                    data[i] -= v.data[i];
+                    this->data[i] -= v.data[i];
                 }
                 return *this;
             }
 
             Vector& operator*=(const Vector& v) {
                 for (int i = 0; i < N; ++i) {
-                    data[i] *= v.data[i];
+                    this->data[i] *= v.data[i];
                 }
                 return *this;
             }
 
             Vector& operator/=(const Vector& v) {
                 for (int i = 0; i < N; ++i) {
-                    data[i] /= v.data[i];
+                    this->data[i] /= v.data[i];
                 }
                 return *this;
             }
 
             Vector& operator+=(const T& v) {
                 for (int i = 0; i < N; ++i) {
-                    data[i] += v;
+                    this->data[i] += v;
                 }
                 return *this;
             }
 
             Vector& operator-=(const T& v) {
                 for (int i = 0; i < N; ++i) {
-                    data[i] -= v;
+                    this->data[i] -= v;
                 }
                 return *this;
             }
 
             Vector& operator*=(const T& v) {
                 for (int i = 0; i < N; ++i) {
-                    data[i] *= v;
+                    this->data[i] *= v;
                 }
                 return *this;
             }
 
             Vector& operator/=(const T& v) {
                 for (int i = 0; i < N; ++i) {
-                    data[i] /= v;
+                    this->data[i] /= v;
                 }
                 return *this;
             }

@@ -5,7 +5,7 @@ namespace tk {
     namespace core {
 
         std::string readFile(const std::string& filename) {
-            std::ifstream t(filename);
+            std::ifstream t(filename.c_str());
             std::string str;
 
             t.seekg(0, std::ios::end);
