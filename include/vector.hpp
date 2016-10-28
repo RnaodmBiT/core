@@ -166,5 +166,18 @@ namespace tk {
             return a /= b;
         }
 
+
+        typedef Vector<float, 2> Vec2f;
+        typedef Vector<float, 3> Vec3f;
+        typedef Vector<float, 4> Vec4f;
+
+        typedef Vector<double, 2> Vec2d;
+        typedef Vector<double, 3> Vec3d;
+        typedef Vector<double, 4> Vec4d;
+
+        typedef Vector<int, 2> Vec2i;
+        typedef Vector<int, 3> Vec3i;
+        typedef Vector<int, 4> Vec4i;
+
     }
 }
