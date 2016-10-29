@@ -38,8 +38,8 @@ namespace tk {
             }
 
 
-            template <class U = T, std::enable_if_t<N == 3>* = nullptr>
-            Vector cross(const Vector& v) const {
+            template <class U = T>
+            typename std::enable_if<N == 3, Vector<U, 3>>::type cross(const Vector& v) const {
                 return Vector{
                     this->y * v.z - this->z * v.y,
                     this->z * v.x - this->x * v.z,

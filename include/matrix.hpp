@@ -49,7 +49,7 @@ namespace tk {
                     for (int col = 0; col < Cols; ++col) {
                         result(row, col) = T(0);
                         for (int i = 0; i < Cols; ++i) {
-                            result(row, col) += At(row, i) * other(i, col);
+                            result(row, col) += at(row, i) * other(i, col);
                         }
                     }
                 }
