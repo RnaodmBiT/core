@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <linkage.hpp>
 
 #if !defined(TK_LOG_LEVEL)
 #   define TK_LOG_LEVEL tk::core::Debug
@@ -20,9 +21,9 @@ namespace tk {
             Error
         };
 
-        void initLog(const std::string& filename);
+        TK_CORE void initLog(const std::string& filename);
 
-        void log(const std::string& msg, LogLevel level = Debug);
+        TK_CORE void log(const std::string& msg, LogLevel level = Debug);
 
     }
 }

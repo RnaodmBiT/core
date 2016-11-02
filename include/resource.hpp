@@ -6,12 +6,12 @@
 namespace tk {
     namespace core {
 
-        class IResource {
+        class TK_CORE IResource {
         public:
             virtual ~IResource() { }
         };
 
-        class ResourceCollection {
+        class TK_CORE ResourceCollection {
             class Impl;
             Impl* impl;
 
