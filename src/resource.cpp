@@ -1,6 +1,8 @@
 #include <resource.hpp>
 #include <unordered_map>
 #include <memory>
+#include <log.hpp>
+#include <utility.hpp>
 
 namespace tk {
     namespace core {
