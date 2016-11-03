@@ -6,6 +6,10 @@ namespace tk {
 
         std::string readFile(const std::string& filename) {
             std::ifstream t(filename.c_str());
+            if (!t.is_open() || !t.good()) {
+                return std::string();
+            }
+
             std::string str;
 
             t.seekg(0, std::ios::end);
