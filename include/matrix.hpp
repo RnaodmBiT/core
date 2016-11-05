@@ -118,7 +118,7 @@ namespace tk {
         }
 
         template <class T>
-        Matrix<T, 4, 4> transpose(T x, T y, T z) {
+        Matrix<T, 4, 4> translate(T x, T y, T z) {
             Matrix<T, 4, 4> ret;
             ret(0, 3) = x;
             ret(1, 3) = y;
@@ -127,8 +127,8 @@ namespace tk {
         }
 
         template <class T>
-        Matrix<T, 4, 4> transpose(const Vector<T, 3>& vec) {
-            return transpose(vec.x, vec.y, vec.z);
+        Matrix<T, 4, 4> translate(const Vector<T, 3>& vec) {
+            return translate(vec.x, vec.y, vec.z);
         }
 
         static Mat4f rotate(float angle, const Vec3f& axis) {
