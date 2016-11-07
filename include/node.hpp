@@ -10,7 +10,7 @@ namespace tk {
         class Node : public T {
         protected:
             std::string name;
-            std::vector<std::unique_ptr<Node>> children;
+            std::vector<Node*> children;
         public:
             Node(const std::string& name) : name(name) { } 
 
@@ -35,16 +35,13 @@ namespace tk {
                 return nullptr;
             }
 
-            std::unique_ptr<Node> removeChild(Node* child) {
+            void removeChild(Node* child) {
                 for (auto i = children.begin(); i != children.end(); ++i) {
                     if (i->get() == child) {
                         std::unique_ptr<Node> node = std::move(*i);
                         children.erase(i);
-                        return node;
                     }
                 }
-
-                return nullptr;
             }
         };
 
