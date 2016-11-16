@@ -61,6 +61,15 @@ namespace tk {
             }
 
 
+            Vector operator-() {
+                Vector negate;
+                for (int i = 0; i < N; ++i) {
+                    negate.data[i] = -this->data[i];
+                }
+                return negate;
+            }
+
+
             Vector& operator=(const Vector& v) {
                 for (int i = 0; i < N; ++i) {
                     this->data[i] = v.data[i];
