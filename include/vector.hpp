@@ -4,6 +4,10 @@
 
 namespace tk {
     namespace core {
+        
+        namespace {
+            const float pi = 3.14159265359f;
+        }
 
         template <class T, int N>
         class Vector : public detail::VectorData<T, N> {
