@@ -4,19 +4,20 @@
 namespace tk {
     namespace core {
 
+        template <class T>
         class State {
-            State* nextState;
+            State<T>* nextState;
         protected:
-            void setNextState(State* next) {
+            void setNextState(State<T>* next) {
                 nextState = next;
             }
         public:
             State() : nextState(nullptr) { }
-            virtual void create(ResourceCollection& resources) { };
+            virtual void create(T& init) { };
             virtual void shutdown() { };
             virtual void draw() { };
 
-            virtual State* update() {
+            virtual State<T>* update() {
                 return nextState;
             }
         };
