@@ -34,7 +34,7 @@ namespace tk {
         }
 
 
-        IResource* ResourceCollection::getResource(const std::string& key) {
+        IResource* ResourceCollection::getResource(const std::string& key) const {
             return impl->getResource(key);
         }
 

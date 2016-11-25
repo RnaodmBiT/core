@@ -15,7 +15,7 @@ namespace tk {
             class Impl;
             Impl* impl;
 
-            IResource* getResource(const std::string& key);
+            IResource* getResource(const std::string& key) const;
             void cacheResource(const std::string& key, IResource* resource);
 
         public:
@@ -31,7 +31,7 @@ namespace tk {
             }
 
             template <class T>
-            T* get(const std::string& key) {
+            T* get(const std::string& key) const {
                 IResource* ptr = getResource(key);
                 tk_warn(ptr, format("Resource '%%' does not exist.", key));
                 return dynamic_cast<T*>(ptr);

@@ -7,6 +7,7 @@
 #endif
 
 #define tk_assert(cond, msg) if (!(cond)) { tk::core::log(msg, tk::core::Error); }
+#define tk_error(msg) { tk::core::log(msg, tk::core::Error); }
 #define tk_warn(cond, msg) if (!(cond)) { tk::core::log(msg, tk::core::Warning); }
 #define tk_info(msg) if (tk::core::Info >= TK_LOG_LEVEL) { tk::core::log(msg, tk::core::Info); }
 #define tk_debug(msg) if (tk::core::Debug >= TK_LOG_LEVEL) { tk::core::log(msg, tk::core::Debug); }
