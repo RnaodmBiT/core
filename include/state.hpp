@@ -13,6 +13,7 @@ namespace tk {
             }
         public:
             State() : nextState(nullptr) { }
+            virtual ~State() { }
             virtual void create(T& init) { };
             virtual void shutdown() { };
             virtual void draw() { };
