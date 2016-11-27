@@ -6,7 +6,7 @@ namespace tk {
     namespace core {
         
         namespace {
-            const float pi = 3.14159265359f;
+            constexpr float pi = 3.14159265359f;
         }
 
         template <class T, int N>

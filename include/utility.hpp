@@ -18,5 +18,10 @@ namespace tk {
             return stream.str();
         }
 
+        template <class T, int N>
+        constexpr int sizeof_array(T(&)[N]) {
+            return N;
+        }
+
     }
 }

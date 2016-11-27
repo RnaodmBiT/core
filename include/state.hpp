@@ -18,7 +18,7 @@ namespace tk {
             virtual void shutdown() { };
             virtual void draw() { };
 
-            virtual State<T>* update() {
+            virtual State<T>* update(float dt) {
                 return nextState;
             }
         };
