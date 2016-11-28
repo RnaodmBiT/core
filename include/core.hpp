@@ -10,7 +10,8 @@
 #include <state.hpp>
 #include <event.hpp>
 #include <keyboard.hpp>
+#include <mouse.hpp>
 #include <node.hpp>
 #include <json.hpp>
 #include <update_timer.hpp>
-
+#include <maths.hpp>

@@ -24,18 +24,26 @@ namespace tk {
 
         template <class ...Args>
         class Event {
-            std::vector<Delegate<Args...>*> clients;
-            std::vector<Delegate<Args...>*> removeQueue;
+            std::vector<Delegate<Args...>*> clients, removeQueue, attachQueue;
 
             void removeDelegates() {
                 for (auto ptr : removeQueue) {
                     clients.erase(std::remove(clients.begin(), clients.end(), ptr), clients.end());
                 }
+                removeQueue.clear();
             }
+
+            void attachDelegates() {
+                for (auto ptr : attachQueue) {
+                    clients.push_back(ptr);
+                }
+                attachQueue.clear();
+            }
+
         public:
             void attach(Delegate<Args...>& client) {
                 client.parent = this;
-                clients.push_back(&client);
+                attachQueue.push_back(&client);
             }
 
             void remove(Delegate<Args...>& client) {
@@ -43,6 +51,7 @@ namespace tk {
             }
 
             void call(const Args&... args) {
+                attachDelegates();
                 removeDelegates();
                 for (auto client : clients) {
                     client->event(args...);
