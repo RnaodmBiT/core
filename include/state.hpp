@@ -8,13 +8,13 @@ namespace tk {
         class State {
             State<T>* nextState;
         protected:
+            T& global;
             void setNextState(State<T>* next) {
                 nextState = next;
             }
         public:
-            State() : nextState(nullptr) { }
+            State(T& init) : nextState(nullptr), global(init) { }
             virtual ~State() { }
-            virtual void create(T& init) { };
             virtual void shutdown() { };
             virtual void draw() { };
 
