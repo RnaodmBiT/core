@@ -57,11 +57,27 @@ namespace tk {
                 for (int i = 0; i < N; ++i) {
                     sum += this->data[i] * this->data[i];
                 }
+                return sum;
             }
 
 
             T length() const {
                 return std::sqrt(lengthSquared());
+            }
+
+
+            void normalize() {
+                T l = length();
+                for (int i = 0; i < N; ++i) {
+                    this->data[i] /= l;
+                }
+            }
+
+
+            Vector normalized() const {
+                Vector v = *this;
+                v.normalize();
+                return v;
             }
 
 
