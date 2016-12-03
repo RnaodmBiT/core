@@ -36,10 +36,11 @@ namespace tk {
             }
 
             void removeChild(Node* child) {
-                for (auto i = children.begin(); i != children.end(); ++i) {
-                    if (i->get() == child) {
-                        std::unique_ptr<Node> node(std::move(*i));
-                        children.erase(i);
+                for (auto i = children.begin(); i != children.end();) {
+                    if (*i == child) {
+                        i = children.erase(i);
+                    } else {
+                        ++i;
                     }
                 }
             }

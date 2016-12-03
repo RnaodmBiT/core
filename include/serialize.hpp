@@ -179,7 +179,7 @@ namespace tk {
             }
         }
 
-
+        */
         template <class T, std::size_t N>
         void serialize(Blob& b, const std::array<T, N>& array) {
             for (std::size_t i = 0; i < N; ++i) {
@@ -189,11 +189,11 @@ namespace tk {
 
 
         template <class T, std::size_t N>
-        void deserialize(Blob::iterator& it, std::array<T, N>& array) {
+        void deserialize(Blob::const_iterator& it, std::array<T, N>& array) {
             for (std::size_t i = 0; i < N; ++i) {
                 deserialize(it, array[i]);
             }
         }
-        */
+        
     }
 }

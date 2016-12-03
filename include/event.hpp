@@ -14,8 +14,11 @@ namespace tk {
             Event<Args...>* parent;
             friend class Event<Args...>;
         public:
+            Delegate() : parent(nullptr) { }
             ~Delegate() {
-                parent->remove(*this);
+                if (parent) {
+                    parent->remove(*this);
+                }
             }
 
             std::function<void(Args...)> event;
@@ -54,7 +57,9 @@ namespace tk {
                 attachDelegates();
                 removeDelegates();
                 for (auto client : clients) {
-                    client->event(args...);
+                    if (client->event) {
+                        client->event(args...);
+                    }
                 }
             }
 

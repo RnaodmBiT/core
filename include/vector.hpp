@@ -1,5 +1,6 @@
 #pragma once
 #include <detail/vector_base.hpp>
+#include <serialize.hpp>
 #include <cmath>
 
 namespace tk {
@@ -204,6 +205,16 @@ namespace tk {
         typedef Vector<int, 2> Vec2i;
         typedef Vector<int, 3> Vec3i;
         typedef Vector<int, 4> Vec4i;
+
+        template <class T, int N>
+        void serialize(Blob& blob, const Vector<T, N>& vector) {
+            serialize(blob, vector.data);
+        }
+
+        template <class T, int N>
+        void deserialize(Blob::const_iterator& it, Vector<T, N>& vector) {
+            deserialize(it, vector.data);
+        }
 
     }
 }
