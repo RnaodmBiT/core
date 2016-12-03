@@ -18,8 +18,16 @@
 #   else
 #       define TK_LAYOUT            __declspec(dllimport)
 #   endif
+
+#   if defined(TK_BUILD_NET)
+#       define TK_NET               __declspec(dllexport)
+#   else
+#       define TK_NET               __declspec(dllimport)
+#   endif
+
 #else
 #   define TK_CORE
 #   define TK_GRAPHICS
 #   define TK_LAYOUT
+#   define TK_NET
 #endif
