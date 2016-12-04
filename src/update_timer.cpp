@@ -15,7 +15,7 @@ namespace tk {
             long long requiredNumberOfUpdates() {
                 std::chrono::nanoseconds time = clock::now() - start;
                 double rate = 1e9 / frequency;
-                return time.count() / long long(rate);
+                return time.count() / (long long)(rate);
             }
 
         public:
