@@ -1,4 +1,5 @@
 #pragma once
+#include <linkage.hpp>
 #include <vector>
 #include <stdint.h>
 #include <unordered_map>
@@ -8,11 +9,53 @@ namespace tk {
     namespace core {
         typedef std::vector<unsigned char> Blob;
 
-        template <class T>
+        /*template <class T>
         void serialize(Blob& b, const T& obj);
 
         template <class T>
         void deserialize(Blob::const_iterator& it, T& o);
+        */
+
+        TK_CORE void serialize(Blob& bl, const unsigned char& i);
+
+        TK_CORE void serialize(Blob& bl, const unsigned short& i);
+
+        TK_CORE void serialize(Blob& bl, const unsigned int& i);
+
+        TK_CORE void serialize(Blob& bl, const unsigned long long& i);
+
+        TK_CORE void serialize(Blob& bl, const char& i);
+
+        TK_CORE void serialize(Blob& bl, const short& i);
+
+        TK_CORE void serialize(Blob& bl, const int& i);
+
+        TK_CORE void serialize(Blob& bl, const long long& i);
+
+        TK_CORE void serialize(Blob& bl, const float& f);
+
+        TK_CORE void serialize(Blob& b, const std::string& str);
+
+
+        TK_CORE void deserialize(Blob::const_iterator& it, unsigned char& o);
+
+        TK_CORE void deserialize(Blob::const_iterator& it, unsigned short& o);
+
+        TK_CORE void deserialize(Blob::const_iterator& it, unsigned int& o);
+
+        TK_CORE void deserialize(Blob::const_iterator& it, unsigned long long& o);
+
+        TK_CORE void deserialize(Blob::const_iterator& it, char& o);
+
+        TK_CORE void deserialize(Blob::const_iterator& it, short& o);
+
+        TK_CORE void deserialize(Blob::const_iterator& it, int& o);
+
+        TK_CORE void deserialize(Blob::const_iterator& it, long long& o);
+
+        TK_CORE void deserialize(Blob::const_iterator& it, float& o);
+
+        TK_CORE void deserialize(Blob::const_iterator& it, std::string& str);
 
         template <class T, class U, class ...Us>
         void serialize(Blob& b, const T& t, const U& u, const Us&... us) {
@@ -26,48 +69,7 @@ namespace tk {
             deserialize(it, u, us...);
         }
 
-        template <> void serialize(Blob& bl, const unsigned char& i);
 
-        template <> void serialize(Blob& bl, const unsigned short& i);
-
-        template <> void serialize(Blob& bl, const unsigned int& i);
-
-        template <> void serialize(Blob& bl, const unsigned long long& i);
-
-        template <> void serialize(Blob& bl, const char& i);
-
-        template <> void serialize(Blob& bl, const short& i);
-
-        template <> void serialize(Blob& bl, const int& i);
-
-        template <> void serialize(Blob& bl, const long long& i);
-
-        template <> void serialize(Blob& bl, const float& f);
-
-        template <> void serialize(Blob& b, const std::string& str);
-
-
-        template <> void deserialize(Blob::const_iterator& it, unsigned char& o);
-
-        template <> void deserialize(Blob::const_iterator& it, unsigned short& o);
-
-        template <> void deserialize(Blob::const_iterator& it, unsigned int& o);
-
-        template <> void deserialize(Blob::const_iterator& it, unsigned long long& o);
-
-        template <> void deserialize(Blob::const_iterator& it, char& o);
-
-        template <> void deserialize(Blob::const_iterator& it, short& o);
-
-        template <> void deserialize(Blob::const_iterator& it, int& o);
-
-        template <> void deserialize(Blob::const_iterator& it, long long& o);
-
-        template <> void deserialize(Blob::const_iterator& it, float& o);
-
-        template <> void deserialize(Blob::const_iterator& it, std::string& str);
-
-        
         template <class T>
         void serialize(Blob& b, const std::vector<T>& list) {
             serialize(b, (unsigned int)list.size());
@@ -124,6 +126,6 @@ namespace tk {
                 deserialize(it, array[i]);
             }
         }
-        
+
     }
 }
