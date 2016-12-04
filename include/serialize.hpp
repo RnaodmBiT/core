@@ -15,7 +15,7 @@ namespace tk {
             void deserialize(Blob::const_iterator& it, T& value);
         };
 
-#define CONVERT_TYPE(type)  template <> struct convert<type> { \
+#define CONVERT_TYPE(type)  template <> struct TK_CORE convert<type> { \
                                 void serialize(Blob& blob, type const& value); \
                                 void deserialize(Blob::const_iterator& it, type& value); \
                             };
