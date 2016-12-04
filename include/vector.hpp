@@ -207,14 +207,15 @@ namespace tk {
         typedef Vector<int, 4> Vec4i;
 
         template <class T, int N>
-        void serialize(Blob& blob, const Vector<T, N>& vector) {
-            serialize(blob, vector.data);
-        }
+        struct convert<Vector<T, N>> {
+            void serialize(Blob& blob, const Vector<T, N>& vector) {
+                tk::core::serialize(blob, vector.data);
+            }
 
-        template <class T, int N>
-        void deserialize(Blob::const_iterator& it, Vector<T, N>& vector) {
-            deserialize(it, vector.data);
-        }
+            void deserialize(Blob::const_iterator& it, Vector<T, N>& vector) {
+                tk::core::deserialize(it, vector.data);
+            }
+        };
 
     }
 }

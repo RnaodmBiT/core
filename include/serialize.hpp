@@ -4,58 +4,46 @@
 #include <stdint.h>
 #include <unordered_map>
 #include <array>
+#include <blob.hpp>
 
 namespace tk {
     namespace core {
-        typedef std::vector<unsigned char> Blob;
-
-        /*template <class T>
-        void serialize(Blob& b, const T& obj);
 
         template <class T>
-        void deserialize(Blob::const_iterator& it, T& o);
-        */
+        struct convert {
+            void serialize(Blob& blob, T const& value);
+            void deserialize(Blob::const_iterator& it, T& value);
+        };
 
-        TK_CORE void serialize(Blob& bl, const unsigned char& i);
+#define CONVERT_TYPE(type)  template <> struct convert<type> { \
+                                void serialize(Blob& blob, type const& value); \
+                                void deserialize(Blob::const_iterator& it, type& value); \
+                            };
 
-        TK_CORE void serialize(Blob& bl, const unsigned short& i);
+        template <class T>
+        void serialize(Blob& b, T const& value) {
+            convert<T>().serialize(b, value);
+        }
 
-        TK_CORE void serialize(Blob& bl, const unsigned int& i);
+        template <class T>
+        void deserialize(Blob::const_iterator& it, T& value) {
+            convert<T>().deserialize(it, value);
+        }
 
-        TK_CORE void serialize(Blob& bl, const unsigned long long& i);
+        CONVERT_TYPE(unsigned char);
+        CONVERT_TYPE(unsigned short);
+        CONVERT_TYPE(unsigned int);
+        CONVERT_TYPE(unsigned long long);
 
-        TK_CORE void serialize(Blob& bl, const char& i);
+        CONVERT_TYPE(char);
+        CONVERT_TYPE(short);
+        CONVERT_TYPE(int);
+        CONVERT_TYPE(long long);
 
-        TK_CORE void serialize(Blob& bl, const short& i);
+        CONVERT_TYPE(float);
+        CONVERT_TYPE(double);
 
-        TK_CORE void serialize(Blob& bl, const int& i);
-
-        TK_CORE void serialize(Blob& bl, const long long& i);
-
-        TK_CORE void serialize(Blob& bl, const float& f);
-
-        TK_CORE void serialize(Blob& b, const std::string& str);
-
-
-        TK_CORE void deserialize(Blob::const_iterator& it, unsigned char& o);
-
-        TK_CORE void deserialize(Blob::const_iterator& it, unsigned short& o);
-
-        TK_CORE void deserialize(Blob::const_iterator& it, unsigned int& o);
-
-        TK_CORE void deserialize(Blob::const_iterator& it, unsigned long long& o);
-
-        TK_CORE void deserialize(Blob::const_iterator& it, char& o);
-
-        TK_CORE void deserialize(Blob::const_iterator& it, short& o);
-
-        TK_CORE void deserialize(Blob::const_iterator& it, int& o);
-
-        TK_CORE void deserialize(Blob::const_iterator& it, long long& o);
-
-        TK_CORE void deserialize(Blob::const_iterator& it, float& o);
-
-        TK_CORE void deserialize(Blob::const_iterator& it, std::string& str);
+        CONVERT_TYPE(std::string);
 
         template <class T, class U, class ...Us>
         void serialize(Blob& b, const T& t, const U& u, const Us&... us) {
