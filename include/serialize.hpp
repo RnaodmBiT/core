@@ -35,6 +35,8 @@ namespace tk {
         CONVERT_TYPE(unsigned int);
         CONVERT_TYPE(unsigned long long);
 
+        CONVERT_TYPE(bool);
+
         CONVERT_TYPE(char);
         CONVERT_TYPE(short);
         CONVERT_TYPE(int);

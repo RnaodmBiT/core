@@ -44,6 +44,16 @@ namespace tk {
             o = ((unsigned long long)b << 32) | a;
         }
 
+        void convert<bool>::serialize(Blob& bl, const bool& i) {
+            tk::core::serialize<unsigned char>(bl, i ? 1 : 0);
+        }
+
+        void convert<bool>::deserialize(Blob::const_iterator& it, bool& o) {
+            unsigned char v;
+            tk::core::deserialize(it, v);
+            o = v == 1;
+        }
+
         void convert<char>::serialize(Blob& bl, const char& i) {
             tk::core::serialize(bl, *(unsigned char*)&i);
         }

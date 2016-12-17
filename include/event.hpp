@@ -49,6 +49,12 @@ namespace tk {
                 attachQueue.push_back(&client);
             }
 
+            template <class T>
+            void attach(Delegate<Args...>& client, T func) {
+                client.event = func;
+                attach(client);
+            }
+
             void remove(Delegate<Args...>& client) {
                 removeQueue.push_back(&client);
             }
