@@ -20,7 +20,7 @@ namespace tk {
             return x > 0.0f ? 1.0f : x < 0.0f ? -1.0f : 0.0f;
         }
 
-        static float angleBetwen(const Vec2f& to, const Vec2f& from) {
+        static float angleBetween(const Vec2f& to, const Vec2f& from) {
             return std::atan2(to.y - from.y, to.x - from.x);
         }
 
