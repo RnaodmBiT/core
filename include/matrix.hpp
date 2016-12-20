@@ -94,9 +94,9 @@ namespace tk {
         Vector<T, Rows> operator*(Matrix<T, Rows, Cols>& left, Vector<T, Cols>& right) {
             Vector<T, Rows> result;
             for (int i = 0; i < Rows; ++i) {
-                result(i) = T(0);
+                result.data[i] = T(0);
                 for (int j = 0; j < Cols; ++j) {
-                    result(i) += left(i, j) * right(j);
+                    result.data[i] += left(i, j) * right.data[j];
                 }
             }
             return result;
