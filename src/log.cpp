@@ -35,6 +35,9 @@ namespace tk {
             printf("%s\n", msg.c_str());
 
             if (level == Error) {
+#if defined(_DEBUG) && defined(_MSC_VER)
+                __debugbreak();
+#endif
                 exit(0);
             }
         }
