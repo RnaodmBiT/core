@@ -131,6 +131,20 @@ namespace tk {
             return translate(vec.x, vec.y, vec.z);
         }
 
+        template <class T>
+        Matrix<T, 4, 4> scale(T x, T y, T z) {
+            Matrix<T, 4, 4> ret;
+            ret(0, 0) = x;
+            ret(1, 1) = y;
+            ret(2, 2) = z;
+            return ret;
+        }
+
+        template <class T>
+        Matrix<T, 4, 4> scale(const Vector<T, 3>& vec) {
+            return scale(vec.x, vec.y, vec.z);
+        }
+
         static Mat4f rotate(float angle, const Vec3f& axis) {
             Mat4f mat;
             float c = std::cos(angle);
