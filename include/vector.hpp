@@ -78,7 +78,7 @@ namespace tk {
             }
 
 
-            Vector operator-() {
+            Vector operator-() const {
                 Vector negate;
                 for (int i = 0; i < N; ++i) {
                     negate.data[i] = -this->data[i];
