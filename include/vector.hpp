@@ -217,5 +217,9 @@ namespace tk {
             }
         };
 
+        static float angleBetween(const Vec2f& to, const Vec2f& from) {
+            return std::atan2(to.y - from.y, to.x - from.x);
+        }
+
     }
 }
