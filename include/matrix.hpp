@@ -91,7 +91,7 @@ namespace tk {
         }
 
         template <class T, int Rows, int Cols>
-        Vector<T, Rows> operator*(Matrix<T, Rows, Cols>& left, Vector<T, Cols>& right) {
+        Vector<T, Rows> operator*(const Matrix<T, Rows, Cols>& left, const Vector<T, Cols>& right) {
             Vector<T, Rows> result;
             for (int i = 0; i < Rows; ++i) {
                 result.data[i] = T(0);
