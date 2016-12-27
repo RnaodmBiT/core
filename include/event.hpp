@@ -2,6 +2,7 @@
 #include <functional>
 #include <vector>
 #include <algorithm>
+#include <unordered_set>
 
 namespace tk {
     namespace core {
@@ -27,18 +28,16 @@ namespace tk {
 
         template <class ...Args>
         class Event {
-            std::vector<Delegate<Args...>*> clients, removeQueue, attachQueue;
+            std::unordered_set<Delegate<Args...>*> clients, removeQueue, attachQueue;
 
-            void removeDelegates() {
+            void updateDelegates() {
                 for (auto ptr : removeQueue) {
-                    clients.erase(std::remove(clients.begin(), clients.end(), ptr), clients.end());
+                    clients.erase(ptr);
                 }
                 removeQueue.clear();
-            }
 
-            void attachDelegates() {
                 for (auto ptr : attachQueue) {
-                    clients.push_back(ptr);
+                    clients.insert(ptr);
                 }
                 attachQueue.clear();
             }
@@ -46,7 +45,11 @@ namespace tk {
         public:
             void attach(Delegate<Args...>& client) {
                 client.parent = this;
-                attachQueue.push_back(&client);
+                if (removeQueue.count(&client)) {
+                    removeQueue.erase(&client);
+                } else {
+                    attachQueue.insert(&client);
+                }
             }
 
             template <class T>
@@ -56,12 +59,15 @@ namespace tk {
             }
 
             void remove(Delegate<Args...>& client) {
-                removeQueue.push_back(&client);
+                if (attachQueue.count(&client)) {
+                    attachQueue.erase(&client);
+                } else {
+                    removeQueue.insert(&client);
+                }
             }
 
             void call(const Args&... args) {
-                attachDelegates();
-                removeDelegates();
+                updateDelegates();
                 for (auto client : clients) {
                     if (client->event) {
                         client->event(args...);
