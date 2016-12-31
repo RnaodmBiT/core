@@ -33,6 +33,7 @@ namespace tk {
             void updateDelegates() {
                 for (auto ptr : removeQueue) {
                     clients.erase(ptr);
+                    ptr->parent = nullptr;
                 }
                 removeQueue.clear();
 
@@ -43,6 +44,16 @@ namespace tk {
             }
 
         public:
+            ~Event() {
+                for (auto ptr : clients) {
+                    ptr->parent = nullptr;
+                }
+
+                for (auto ptr : attachQueue) {
+                    ptr->parent = nullptr;
+                }
+            }
+
             void attach(Delegate<Args...>& client) {
                 client.parent = this;
                 if (removeQueue.count(&client)) {
