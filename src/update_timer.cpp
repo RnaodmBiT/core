@@ -10,16 +10,16 @@ namespace tk {
 
             std::chrono::time_point<clock> start;
             int updates;
-            double frequency;
+            double timeStep;
 
             long long requiredNumberOfUpdates() {
                 std::chrono::nanoseconds time = clock::now() - start;
-                double rate = 1e9 / frequency;
+                double rate = 1e9 * timeStep;
                 return time.count() / (long long)(rate);
             }
 
         public:
-            Impl(double frequency) : start(clock::now()), updates(0), frequency(frequency) { }
+            Impl(double frequency) : start(clock::now()), updates(0), timeStep(1 / frequency) { }
 
             bool update() {
                 if (updates < requiredNumberOfUpdates()) {
@@ -31,7 +31,13 @@ namespace tk {
             }
 
             double period() {
-                return 1.0 / frequency;
+                return timeStep;
+            }
+
+            double progress() {
+                std::chrono::nanoseconds time = clock::now() - start;
+                double now = (double)time.count() / 1e9;
+                return std::fmod(now, timeStep);
             }
         };
 
@@ -49,6 +55,10 @@ namespace tk {
 
         float UpdateTimer::period() {
             return (float)impl->period();
+        }
+
+        float UpdateTimer::progress() {
+            return (float)impl->progress();
         }
     }
 }

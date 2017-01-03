@@ -12,6 +12,7 @@ namespace tk {
 
             bool update();
             float period();
+            float progress();
         };
     }
 }
